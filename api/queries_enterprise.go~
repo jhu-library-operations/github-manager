@@ -1,0 +1,137 @@
+package api
+
+import (
+	"time"
+)
+
+type Enterprise struct {
+	Members []User
+	Organizations []Organization
+	UserAccounts []User
+	AvatarUrl string
+	BillingInfo BillingInfo
+	CreatedAt time.Time
+	DatabaseId int
+	Description string
+	Id string
+	Location string
+	Name string
+	OwnerInfo EnterpriseOwnerInfo
+	ResourcePath string
+	Slug string
+	Url string
+	ViewerIsAdmin bool
+	WebsiteUrl string
+}
+
+type BillingInfo struct {
+	AllLicensableUsersCount int
+	AssetPacks int
+	BandwithdQuota float32
+	BandwithUsage float32
+	BandwithUsagePercentage int
+	Seats int
+	StorageQuota float32
+	StorageUsage float32
+	StorageUsagePercentage int
+	TotalAvailableLicenses int
+	TotalLicenses int
+}
+
+type EnterpriseOwnerInfo struct {
+	Admins []User
+	AffiliatedUsersWithTwoFactorDisabled []Users
+	AllowPrivateRepositorySettingsOrganizations []Organization
+	DefaultRepositoryPermissionSettingOrganizations []Organization
+	EnterpriseServerInstallations []EnterpriseServerInstallation
+	IpAllowListEntries []IpAllowListEntry
+	MembersCanChangeRepositoryVisibilitySettingOrganizations []Organization
+	MembersCanCreateRepositoriesSettingOrganizations []Organization
+	MembersCanDeleteRepositoriesSettingOrganizations []Organization
+	MembersCanInviteCollaboratorsSettingOrganizations []Organization
+	MembersCanUpdatedProtectedBranchesSettingOrganizations []Organization
+	MembersCanViewDependencyIngightsSettingOrganizations []Organization
+	OrganizationProjectsSettingOrganizations []Organization
+	OutsideCollaborators []User
+	PendingAdminInvitations []EnterpriseAdministratorInvitation
+	PendingCollaboratorInvitations []RepositoryInvitation
+	PendingCollaborators []User
+	PendingMemberInvitations []OrganizationInvitation
+	RepositoryProjectsSettingOrganizations []Organization
+	SamlIdentityProviderSettingOrganizations []Organization
+	TeamDiscussionsSettingOrganizations []Organization
+	TwoFactorRequiresSettingOrganizations []Organization
+
+	AffiliatedUsersWithTwoFactorDisabledExist bool
+	AllowPrivateRepositoryForkingSetting string
+	DefaultRepositoryPermissionSetting string
+	IpAllowListEnabledSetting string
+	IsUpdatingTwoFactorRequirement bool
+	MembersCanChangeRepositoryVisibilitySetting string
+	MembersCanCreateInternalRepositoriesSetting bool
+	MembersCanCreatePrivateRepositoriesSetting bool
+	MembersCanCreatePublicRepositoriesSetting bool
+	MembersCanCreateRepositoriesSetting string
+	MembersCanDeleteIssuesSetting string
+	MembersCanDeleteRepositoriesSetting string
+	MembersCanInviteCollaboratorsSetting string
+	MembersCanUpdateProtectedBranchesSetting string
+	MembersCanViewDependencyInsightsSetting string
+	OrganizationProjectsSetting string
+	RepositoryProjectsSetting string
+	SamlIdentityProvider EnterpriseIdentityProvider
+	TeamDiscussionsSetting string
+	TwoFactorRequiredSetting string
+}
+
+type EnterpriseIdentityProvider struct {
+	// ExternalIdentities []ExternalIdentity
+	DigestMethod string
+	Enterprise Enterprise
+	Id string
+	IdpCertificate string
+	Issuer string
+	RecoveryCodes []string
+	SignatureMethod string
+	SsoUrl string
+}
+
+type EnterpriseAdministratorInvitation struct {
+	CreatedAt time.Time
+	Email string
+	Enterprise Enterprise
+	Id string
+	Invitee User
+	Inviter User
+	Role string
+}
+
+type EnterpriseServerInstallation struct {
+	UserAccounts []User
+	UserAccountsUpload EnterpriseServerUserAccountsUpload
+	CreatedAt time.Time
+	CustomerName string
+	HostName string
+	Id string
+	IsConnected bool
+	UpdatedAt time.Time
+}
+
+type EnterpriseServerUserAccountsUpload struct {
+	CreatedAt time.Time
+	Enterprise Enterprise
+	EnterpriseServerInstallation EnterpriseServiceInstallation
+	Id string
+	Name string
+	SyncState string
+	UpdatedAt time.Time
+}
+
+type IpAllowListEntry {
+	AllowListValue string
+	CreatedAt time.Time
+	Id string
+	IsActive bool
+	Name string
+	UpdatedAt time.Time
+}
